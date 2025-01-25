@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('pokedex/', views.pokemon_list, name='pokedex'),
     path('upload/', views.upload_pokemon, name='upload_pokemon'),
-    path('tests/<int:id>/edit/', views.edit_pokemon, name='edit_pokemon')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
