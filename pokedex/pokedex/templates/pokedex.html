@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <style>
+        .pokemon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .pokemon img {
+            width: 120px;
+            height: 100px;
+            margin-right: 50px;
+            border-radius: 5px;
+        }
+        .pokemon .text-content {
+            flex: 1;
+        }
+        .upload-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .upload-link:hover {
+            text-decoration: underline;
+        }
+        .edit-pokemon {
+            margin-left: auto;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .edit-pokemon:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pokedex</h1>
+    <ul class="pokemon-list">
+        {% for pokemon in pokemons %}
+            <li class="pokemon">
+                {% if pokemon.image %}
+                    <img src="{{ pokemon.image.url }}" alt="{{ pokemon.name }}">
+                {% else %}
+                    <div class="no-image">No image available</div>
+                {% endif %}
+                <div class="text-content">
+                    <p><strong>Name:</strong> {{ pokemon.name }}</p>
+                    <p><strong>Description:</strong> {{ pokemon.description }}</p>
+                    <p><strong>Moves:</strong></p>
+                    <ul>
+                        {% if pokemon.move1 %}<li>{{ pokemon.move1 }}</li>{% endif %}
+                        {% if pokemon.move2 %}<li>{{ pokemon.move2 }}</li>{% endif %}
+                        {% if pokemon.move3 %}<li>{{ pokemon.move3 }}</li>{% endif %}
+                        {% if pokemon.move4 %}<li>{{ pokemon.move4 }}</li>{% endif %}
+                    </ul>
+                </div>
+                <a href="{% url 'edit_pokemon' pokemon.id %}" class="edit-pokemon">Edit</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'upload_pokemon' %}" class="upload-link">Go to Upload Page</a>
+</body>
+</html>

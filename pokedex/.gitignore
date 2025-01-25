@@ -1,0 +1,20 @@
+# SQLite
+db.sqlite3
+
+# media sent by the users
+media/
+
+# static files
+staticfiles/
+
+# virtual environment
+.venv/
+venv/
+env/
+
+# python cache
+__pycache__/
+*.pyc
+
+# environment variables
+.env
